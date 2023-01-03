@@ -2,13 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: pink;
-    color: pink;
-}
-
-.testCSS{
-    background-color: red;
-    color: red;
-    margin: 2000px;
-}
