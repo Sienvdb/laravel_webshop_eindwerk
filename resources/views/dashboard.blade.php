@@ -14,4 +14,9 @@
             </div>
         </div>
     </div>
+    <div>
+        @foreach($products as $product)
+            <p>{{$product->name}}</p>
+        @endforeach
+    </div>
 </x-app-layout>
