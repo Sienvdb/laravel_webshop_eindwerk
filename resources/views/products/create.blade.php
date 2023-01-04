@@ -10,7 +10,7 @@
                 <p class="mb-4">Add a product to the shop.</p>
             </header>
 
-            <form method="POST" action="/products">
+            <form method="POST" action="/dashboard/products">
                 @csrf
                 <div class="mb-6">
                     <label for="name" class="inline-block text-lg mb-2">Product Name</label>
@@ -38,7 +38,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-6">
+                <!--<div class="mb-6">
                     <label for="image" class="inline-block text-lg mb-2">Product Image</label>
                     <input
                         type="file"
@@ -49,7 +49,7 @@
                     @error('image')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                </div>
+                </div>-->
 
                 <div class="mb-6">
                     <label for="description" class="inline-block text-lg mb-2">Product Information</label>
