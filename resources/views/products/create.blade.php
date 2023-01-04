@@ -19,33 +19,36 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="name"
                     />
+
+                    @error('name')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
-                    <label for="title" class="inline-block text-lg mb-2">Price</label>
+                    <label for="price" class="inline-block text-lg mb-2">Price</label>
                     <input
                         type="text"
                         class="border border-gray-200 rounded p-2 w-full"
                         name="price"
                     />
+
+                    @error('price')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
-                    <label for="location" class="inline-block text-lg mb-2">Quantity</label>
-                    <input
-                        type="number"
-                        class="border border-gray-200 rounded p-2 w-full"
-                        name="quantity"
-                    />
-                </div>
-
-                <div class="mb-6">
-                    <label for="logo" class="inline-block text-lg mb-2">Product Image</label>
+                    <label for="image" class="inline-block text-lg mb-2">Product Image</label>
                     <input
                         type="file"
                         class="border border-gray-200 rounded p-2 w-full"
                         name="image"
                     />
+
+                    @error('image')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -56,6 +59,10 @@
                         rows="10"
                         placeholder="What the product is made of, what it is used for, etc."
                     ></textarea>
+
+                    @error('description')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-6">

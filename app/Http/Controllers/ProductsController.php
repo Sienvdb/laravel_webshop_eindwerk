@@ -37,7 +37,19 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'description' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        $product = new Product();
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        $product->image = $request->image;
+        $product->save();
+        return redirect()->route('dashboard');
     }
 
     /**
