@@ -20,8 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard',[ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/dashboard/products/{id}',[ProductsController::class, 'show'])->middleware(['auth', 'verified']);
-Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->middleware(['auth', 'verified']);
+Route::get('/dashboard/products/{id}',[ProductsController::class, 'show'])->middleware(['auth']);
+Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->middleware(['auth']);
 
 
 Route::get('/orders')->middleware(['auth', 'verified'])->name('orders.index');

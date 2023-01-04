@@ -31,7 +31,9 @@
 
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <a href="/dashboard/products/create" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add product</a>
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
                         <div class="bg-gray-50 border border-gray-200 rounded p-6">
                             @foreach($products as $product)
                                 <div class="text-2xl">
