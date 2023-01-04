@@ -10,7 +10,8 @@
                 <p class="mb-4">Add a product to the shop.</p>
             </header>
 
-            <form action="">
+            <form method="POST" action="/products">
+                @csrf
                 <div class="mb-6">
                     <label for="name" class="inline-block text-lg mb-2">Product Name</label>
                     <input
