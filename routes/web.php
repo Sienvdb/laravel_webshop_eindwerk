@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->middleware(['auth']);
+Route::post('/dashboard/products',[ProductsController::class, 'store'])->middleware(['auth']);
+
 Route::get('/dashboard/products/{id}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 
