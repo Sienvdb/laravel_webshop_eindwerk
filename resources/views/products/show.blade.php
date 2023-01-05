@@ -9,7 +9,7 @@
                 {{$product->description}}
             </p>
             <p class="text-gray-600 mb-4">
-                {{$product->price}}
+                &euro;{{$product->price}}
             </p>
 
             <div>

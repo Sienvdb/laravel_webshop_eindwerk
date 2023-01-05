@@ -82,9 +82,22 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'price' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'description' => 'required',
+        ]);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        if ($request->hasFile('image')){
+            $product->image = $request->file('image')->store('images', 'public');
+        }
+        $product->save();
+        return back()->with('message', 'Product updated successfully');
     }
 
     /**
