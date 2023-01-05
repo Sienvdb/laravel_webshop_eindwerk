@@ -18,6 +18,7 @@
                         type="text"
                         class="border border-gray-200 rounded p-2 w-full"
                         name="name"
+                        value="{{ old('name') }}"
                     />
 
                     @error('name')
@@ -31,6 +32,7 @@
                         type="number"
                         class="border border-gray-200 rounded p-2 w-full"
                         name="price"
+                        value="{{ old('price') }}"
                     />
 
                     @error('price')
@@ -58,7 +60,8 @@
                         name="description"
                         rows="10"
                         placeholder="What the product is made of, what it is used for, etc."
-                    ></textarea>
+
+                    >{{old('description')}}</textarea>
 
                     @error('description')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
