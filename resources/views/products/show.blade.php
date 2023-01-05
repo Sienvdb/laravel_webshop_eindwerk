@@ -12,6 +12,9 @@
                 {{$product->price}}
             </p>
 
+            <div>
+                <a href="/dashboard/products/{{$product->id}}/edit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit product</a>
+            </div>
         </div>
 
 </x-app-layout>
