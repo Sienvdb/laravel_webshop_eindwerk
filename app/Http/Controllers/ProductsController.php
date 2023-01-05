@@ -40,13 +40,14 @@ class ProductsController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'price' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'description' => 'required',
         ]);
         $product = new Product();
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
-        $product->image = 'testimage';
+        $product->image = $request->file('image')->store('images', 'public');
         $product->quantity = '1';
         $product->save();
         return redirect()->route('dashboard')->with('message', 'Product added successfully');
