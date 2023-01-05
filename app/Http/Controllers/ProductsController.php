@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->simplePaginate(6);
+        $products = Product::latest()->filter(request(['search']))->simplePaginate(6);
         $data['products'] = $products;
         return view('dashboard', $data);
     }
