@@ -24,6 +24,7 @@ Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->
 Route::post('/dashboard/products',[ProductsController::class, 'store'])->middleware(['auth']);
 
 Route::get('/dashboard/products/{product}/edit',[ProductsController::class, 'edit'])->middleware(['auth']);
+Route::put('/dashboard/products/{product}',[ProductsController::class, 'update'])->middleware(['auth']);
 Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 
