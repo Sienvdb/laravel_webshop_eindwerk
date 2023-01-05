@@ -23,7 +23,8 @@ Route::get('/dashboard',[ProductsController::class, 'index'])->middleware(['auth
 Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->middleware(['auth']);
 Route::post('/dashboard/products',[ProductsController::class, 'store'])->middleware(['auth']);
 
-Route::get('/dashboard/products/{id}',[ProductsController::class, 'show'])->middleware(['auth']);
+Route::get('/dashboard/products/{id}/edit',[ProductsController::class, 'edit'])->middleware(['auth']);
+Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 
 Route::get('/orders')->middleware(['auth', 'verified'])->name('orders.index');
