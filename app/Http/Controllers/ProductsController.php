@@ -48,7 +48,6 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->image = $request->file('image')->store('images', 'public');
-        $product->quantity = '1';
         $product->save();
         return redirect()->route('dashboard')->with('message', 'Product added successfully');
     }

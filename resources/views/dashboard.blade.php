@@ -43,6 +43,7 @@
                                     </svg>  
                                 </div>    
                                 <div class="flex row">
+                                    <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
                                     <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
                                 </div>                   
                                
