@@ -25,7 +25,7 @@ Route::post('/dashboard/products',[ProductsController::class, 'store'])->middlew
 
 Route::get('/dashboard/products/{product}/edit',[ProductsController::class, 'edit'])->middleware(['auth']);
 Route::put('/dashboard/products/{product}',[ProductsController::class, 'update'])->middleware(['auth']);
-Route::delete('/dashboard/products/{product}',[ProductsController::class, 'delete'])->middleware(['auth']);
+Route::delete('/dashboard/products/{product}',[ProductsController::class, 'destroy'])->middleware(['auth']);
 Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 
