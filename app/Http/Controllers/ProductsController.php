@@ -49,7 +49,7 @@ class ProductsController extends Controller
         $product->image = 'testimage';
         $product->quantity = '1';
         $product->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('message', 'Product added successfully');
     }
 
     /**
