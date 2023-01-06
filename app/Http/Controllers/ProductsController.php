@@ -19,6 +19,13 @@ class ProductsController extends Controller
         return view('dashboard', $data);
     }
 
+    public function showProducts()
+    {
+        $products = Product::latest()->get();
+        $data['products'] = $products;
+        return view('welcome', $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
