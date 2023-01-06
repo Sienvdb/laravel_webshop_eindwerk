@@ -37,15 +37,15 @@
                 </div>
             @endif
 
-                <x-slot name="header">
-                    <h1 class="font-semibold text-xl text-red-600 leading-tight">
-                        Valentineshop
-                    </h1>
-                </x-slot>
+            <x-slot name="header">
+                <h1 class="font-semibold text-xl text-red-600 leading-tight">
+                    Valentineshop
+                </h1>
+            </x-slot>
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg py-10">
                             <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
                                 @foreach($products as $product)
                                     <div class="flex">
