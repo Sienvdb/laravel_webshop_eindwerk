@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductsController;
 */
 
 Route::get('/',[ProductsController::class, 'showProducts']);
+Route::get('/products/{product}',[ProductsController::class, 'showProduct']);
 
 Route::get('/dashboard',[ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/products/create',[ProductsController::class, 'create'])->middleware(['auth']);

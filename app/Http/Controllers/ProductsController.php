@@ -21,7 +21,7 @@ class ProductsController extends Controller
 
     public function showProducts()
     {
-        $products = Product::latest()->get();
+        $products = Product::latest()->simplePaginate(6);
         $data['products'] = $products;
         return view('welcome', $data);
     }
@@ -66,6 +66,12 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
+    {
+        $data['product'] = $product;
+        return view('products.show', $data);
+    }
+
+    public function showProduct(Product $product)
     {
         $data['product'] = $product;
         return view('products.show', $data);
