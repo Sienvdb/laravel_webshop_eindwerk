@@ -12,15 +12,27 @@
                 &euro;{{$product->price}}
             </p>
 
-            <div class="mt-4 p-2 flex space-x-6">
-                <a href="/dashboard/products/{{$product->id}}/edit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit product</a>
+            @if(Auth::check())
+                <div class="mt-4 p-2 flex space-x-6">
+                    <a href="/dashboard/products/{{$product->id}}/edit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit product</a>
 
-                <form method="POST" action="/dashboard/products/{{$product->id}}">
+                    <form method="POST" action="/dashboard/products/{{$product->id}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete product</button>
+                    </form>
+                </div>
+            @endif
+
+            @if(!Auth::check())
+            <div class="mt-4 p-2 flex space-x-6">
+
+                <form method="POST" action="#">
                     @csrf
-                    @method('DELETE')
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete product</button>
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy product</button>
                 </form>
             </div>
+        @endif
         </div>
 
 </x-app-layout>
