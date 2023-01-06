@@ -21,6 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
+        <x-app-layout>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -36,23 +37,35 @@
                 </div>
             @endif
 
+                <x-slot name="header">
+                    <h1 class="font-semibold text-xl text-red-600 leading-tight">
+                        Valentineshop
+                    </h1>
+                </x-slot>
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <h1>Valentineshop</h1>
+                <div class="py-12">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                            <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+                                @foreach($products as $product)
+                                    <div class="flex">
+                                        <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
+                                        <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
+                                        <div class="text-2xl">
+                                            <a href="/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
+                                            <p class="text-base text-black mt-2">&euro;{{$product->price}}</p>
+                                        </div> 
+                                    </div>
+                                @endforeach
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
-                        @foreach($products as $product)
-                        <div class="flex">
-                            <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
-                            <img class="max-w-20 mr-6 md:block" src="{{$product->image}}" alt="Product image">
-                            <div class="text-2xl">
-                                <a href="/products/{{$product->id}}" class="font-semibold text-xl text-gray-800 leading-tight">{{$product->name}}</a>
-                            </div> 
-                        </div>
-                        @endforeach
+                <div class="mt-6 p-4">
+                    {{ $products->links() }}
                 </div>
+            
         </div>
+    </x-app-layout>
     </body>
 </html>
