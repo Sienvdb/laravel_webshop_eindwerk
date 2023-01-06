@@ -46,7 +46,7 @@
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg py-10">
-                            <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+                            <div class="lg:grid lg:grid-cols-2 gap-6 space-y-6 md:space-y-0 mx-4">
                                 @foreach($products as $product)
                                     <div class="flex">
                                         <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
