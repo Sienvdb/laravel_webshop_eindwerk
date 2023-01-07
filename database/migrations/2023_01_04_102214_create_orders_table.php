@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('product_id');
             $table->longText('user_id');
             $table->string('description');
-            $table->string('amount');
+            $table->number('amount')->default(1);
             $table->timestamps();
         });
     }
