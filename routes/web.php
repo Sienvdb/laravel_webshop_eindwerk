@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductsController;
 
 /*
@@ -28,7 +29,7 @@ Route::delete('/dashboard/products/{product}',[ProductsController::class, 'destr
 Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 
-Route::get('/orders')->middleware(['auth', 'verified'])->name('orders.index');
+Route::post('/orders', [OrderController::class, 'create'])->name('orders.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -28,7 +28,7 @@
             @if(!Auth::check())
             <div class="mt-4 flex space-x-6">
 
-                <form method="POST" action="#">
+                <form method="POST" action="/orders">
                     @csrf
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy product</button>
                 </form>

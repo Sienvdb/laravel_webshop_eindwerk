@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +14,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::latest()->simplePaginate(6);
+        $data['order'] = $order;
+        return view('dashboard', $data);
+
     }
 
     /**
@@ -23,7 +27,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.index');
     }
 
     /**
