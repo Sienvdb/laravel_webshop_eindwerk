@@ -16,9 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::latest()->simplePaginate(6);
-        $data['orders'] = $order;
-        return view('dashboard', $data);
+        return view('orders.index');
 
     }
 

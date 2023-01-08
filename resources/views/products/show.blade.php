@@ -23,15 +23,21 @@
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete product</button>
                     </form>
                 </div>
+                <div class="mt-4 flex space-x-6">
+
+                    <form method="POST" action="/orders">
+                        @csrf
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
+                        <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">
+                    </form>
+                </div>
+    
             @endif
 
             @if(!Auth::check())
             <div class="mt-4 flex space-x-6">
 
-                <form method="POST" action="/orders">
-                    @csrf
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy product</button>
-                </form>
+                    <a href="/login"><button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy product</button></a>
             </div>
         @endif
         </div>

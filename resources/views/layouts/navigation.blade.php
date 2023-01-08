@@ -9,6 +9,9 @@
                         <a href="{{ route('dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
                         </a>
+                        <a href="{{ route('orders') }}">
+                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                        </a>
                     @else
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     @endif
@@ -19,6 +22,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
+
                 </div>
                 @endif
             </div>
@@ -41,9 +48,6 @@
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Profile') }}
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('orders.index')">
-                                {{ __('Orders') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
