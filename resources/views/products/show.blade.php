@@ -9,7 +9,7 @@
     <div class="mx-4">
         <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
             <h2 class="text-2xl font-bold uppercase mb-6 text-red-600 flex justify-center">
-                {{$product->name}} {{$product->user->name}}
+                {{$product->name}} 
             </h2>
             <img class="w-48 mr-6 mb-6 flex items-center justify-center" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image">
             <p class="text-black mb-4">
@@ -18,6 +18,11 @@
             <p class="text-black mb-4">
                 {{$product->description}}
             </p>
+            
+            <div class="mb-3">
+                <h4 class="text-sm">Posted by:</h4>
+                <p class="text-sm text-red-600">{{$product->user->name}}</p>
+            </div>
 
             @if($product->user_id == Auth::id())
                 <div class="mt-4 p-2 flex space-x-6">
