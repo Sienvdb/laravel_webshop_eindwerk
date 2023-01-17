@@ -107,7 +107,9 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         if ($request->hasFile('image')){
-            $product->image = $request->file('image')->store('images', 'public');
+            $image = $request->file('image')->store('images', 'public');
+            $product->image = $image;
+            dd($image);
         }
         $product->save();
         return back()->with('message', 'Product updated successfully');
