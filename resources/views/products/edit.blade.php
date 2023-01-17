@@ -48,7 +48,7 @@
                         class="border border-gray-200 rounded p-2 w-full"
                         name="image"
                     />
-                    <img class="w-48 mr-6 mb-6" src="{{$product->image}}" alt="Product image">
+                    <img class="w-48 mr-6 mb-6" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image">
 
                     @error('image')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
