@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('price');
             $table->string('image')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
