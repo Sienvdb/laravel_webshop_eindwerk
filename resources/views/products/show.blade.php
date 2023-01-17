@@ -1,4 +1,11 @@
 <x-app-layout>
+    @if(Auth::check())
+        <a href="/dashboard" class="inline-block font-bold text-red-600 ml-4 mb-4">&larr; Back</a>
+    @endif
+
+    @if(!Auth::check())
+        <a href="/" class="inline-block font-bold text-red-600 ml-4 mb-4">&larr; Back</a>
+    @endif
     <div class="mx-4">
         <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
             <h2 class="text-2xl font-bold uppercase mb-6 text-red-600 flex justify-center">
@@ -11,7 +18,6 @@
             <p class="text-black mb-4">
                 {{$product->description}}
             </p>
-
 
             @if(Auth::check())
                 <div class="mt-4 p-2 flex space-x-6">
