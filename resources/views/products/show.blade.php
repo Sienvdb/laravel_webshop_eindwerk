@@ -4,7 +4,7 @@
             <h2 class="text-2xl font-bold uppercase mb-6 text-red-600 flex justify-center">
                 {{$product->name}}
             </h2>
-            <img class="w-48 mr-6 mb-6 flex items-center justify-center" src="{{$product->image}}" alt="Product image">
+            <img class="w-48 mr-6 mb-6 flex items-center justify-center" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image">
             <p class="text-black mb-4">
                 &euro;{{$product->price}}
             </p>
