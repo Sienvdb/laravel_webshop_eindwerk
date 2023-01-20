@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +15,17 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('orders.index');
+        $orders = Order::latest()->simplePaginate(6);;
+        $data['orders'] = $orders;
+        return view('orders.index', $data);
 
+    }
+
+    public function showOrders()
+    {
+        $orders = Order::latest()->simplePaginate(6);
+        $data['orders'] = $orders;
+        return view('orders.index', $data);
     }
 
     /**
@@ -25,9 +33,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Order $order)
     {
-        return view('orders.index');
+        $data['order'] = $order;
+        return view('orders.details', $data);
     }
 
     /**
@@ -38,19 +47,22 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'product_id' => "required",
-            //'description' => 'required',
+           // 'description' => 'required',
             //'amount' =>  'required',
         ]);
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->product_id = $request->product_id;
-        //$order->description = "first test";
-        //$order->amount = 3;
+        $order->description = "first test";
+        $order->amount = 3;
         //dd($order, $request, $request->product_id);
         $order->save();
-        return redirect()->route('dashboard')->with('message', 'Product added to basket');
+        dd($order);
+
+        return redirect()->route('orders')->with('message', 'Product added to basket');
 
     }
 

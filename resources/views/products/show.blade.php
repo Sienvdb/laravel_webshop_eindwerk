@@ -25,7 +25,7 @@
                 </div>
                 <div class="mt-4 flex space-x-6">
 
-                    <form method="POST" action="/orders">
+                    <form method="POST" action="/orders" enctype="multipart/form-data">
                         @csrf
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
                         <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">

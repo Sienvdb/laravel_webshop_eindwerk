@@ -29,8 +29,8 @@ Route::delete('/dashboard/products/{product}',[ProductsController::class, 'destr
 Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 Route::get('/orders',[OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders');
-//Route::post('/myorders', [OrderController::class, 'create'])->name('orders.index')->middleware(['auth']);;
-Route::post('/orderds', [OrderController::class, 'store'])->name('orders.store')->middleware(['auth']);;
+Route::post('/ordedrs', [OrderController::class, 'create'])->name('index')->middleware(['auth']);;
+Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('orders');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
