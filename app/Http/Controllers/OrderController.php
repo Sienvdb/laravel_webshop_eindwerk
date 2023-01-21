@@ -20,16 +20,27 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->simplePaginate(30);
-        $data['orders'] = $orders;
         $data['products'] = array();
         $products = DB::table('products')->simplePaginate(30);
 
-        /*
-        foreach($orders as $order){
-            $product = Order::product()->id;
+        $order = DB::table('orders')->get();
+        $my_orders = $order->where('user_id', Auth::user()->id);
+        $data['orders'] = $my_orders;
+
+        $product = DB::table('products')->get();
+
+        $data['my_price'] = [];
+        foreach($my_orders as $my_order){
+            $my_order_product = $my_order->product_id;
+
+            $my_product = $product->where('id', $my_order_product);
+            $my_product_price = $my_product->pluck('price');
+            $my_order_amount = $my_order->amount;
+            $my_order_price = $my_order_amount * $my_product_price[0];
+            
+            array_push($data['my_price'], $my_order_price);
+    
         }
-        */
 
         $data['products'] = $products;
         return view('orders.index', $data);
