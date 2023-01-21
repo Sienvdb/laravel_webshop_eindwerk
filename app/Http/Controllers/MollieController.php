@@ -69,7 +69,7 @@ class MollieController extends Controller
         ]);
 
         $payment = Mollie::api()->payments()->get($payment->id);
-        
+
         // redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);
         
@@ -105,6 +105,14 @@ class MollieController extends Controller
      */
     public function paymentSuccess() 
     {   
+        $order = DB::table('orders')->get();
+        $my_orders = $order->where('user_id', Auth::user()->id);
+
+        //delete $my_orders from database
+        foreach($my_orders as $my_order){
+            DB::table('orders')->where('id', $my_order->id)->delete();
+        }
+
         return view('mollie/mollie-success')->with('status','payment succesfully received');
     }
 }
