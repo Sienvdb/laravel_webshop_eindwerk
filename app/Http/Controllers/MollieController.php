@@ -41,6 +41,7 @@ class MollieController extends Controller
     
         }
 
+        $my_price = `"` . $my_price . ".00" .`"`; // convert to string
         // check if customer already created or not
         $mollie_customer_id = User::where('id',Auth::user()->id)->pluck('mollie_customer_id')->first();
 
@@ -60,9 +61,9 @@ class MollieController extends Controller
         $payment = Mollie::api()->customers->get($mollie_customer_id)->createPayment([
             "amount" => [
                "currency" => "EUR",
-               "value" => "1.00",
+               "value" => $my_price,
             ],
-            "description" => "CodeHunger Software",
+            "description" => "Valentijnsverkoop",
             "sequenceType" => "first",
             "redirectUrl" => route('mollie.payment.success'), // after the payment completion where you to redirect
         ]);
