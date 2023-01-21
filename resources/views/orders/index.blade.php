@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20">
                 <a class="btn btn-primary" href="{{route('mollie.create.payment')}}">Pay</a>
-                
+
                 <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
                     @foreach($products as $product)
                     @foreach($orders as $order)

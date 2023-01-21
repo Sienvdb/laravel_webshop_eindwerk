@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mollie\Laravel\Facades\Mollie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\user;
 
@@ -22,7 +23,24 @@ class MollieController extends Controller
      */
     public function createPayment()
     {   
-        
+        $order = DB::table('orders')->get();
+        $my_orders = $order->where('user_id', Auth::user()->id);
+
+        $product = DB::table('products')->get();
+
+        $my_price = 0;
+        foreach($my_orders as $my_order){
+            $my_order_product = $my_order->product_id;
+
+            $my_product = $product->where('id', $my_order_product);
+            $my_product_price = $my_product->pluck('price');
+            $my_order_amount = $my_order->amount;
+            $my_order_price = $my_order_amount * $my_product_price[0];
+            
+            $my_price += $my_order_price;
+    
+        }
+
         // check if customer already created or not
         $mollie_customer_id = User::where('id',Auth::user()->id)->pluck('mollie_customer_id')->first();
 
