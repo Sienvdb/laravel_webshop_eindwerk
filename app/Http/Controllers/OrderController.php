@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Mollie\Laravel\Facades\Mollie;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Input;
@@ -122,12 +123,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('orders')->with('message', 'Product deleted successfully');
     }
 
-    public function pay(){
-        return view('orders.pay');
-    }
 }

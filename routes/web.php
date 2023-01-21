@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\MollieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])-
 Route::get('/orders',[OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders');
 Route::post('/ordedrs', [OrderController::class, 'create'])->name('index')->middleware(['auth']);;
 Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('orders');
+Route::delete('/orders/{order}',[OrderController::class, 'destroy'])->middleware(['auth']);
 Route::get('/pay/{user}', [OrderController::class, 'pay'])->middleware(['auth'])->name('pay');
 
 Route::middleware('auth')->group(function () {
@@ -38,5 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//Mollie Payment
+Route::get('mollie-payment-success',[MollieController::class, 'paymentSuccess'])->name('mollie.payment.success');
+Route::get('mollie-create-payment',[MollieController::class,'createPayment'])->name('mollie.create.payment');
+Route::get('create-mollie-subscription',[MollieController::class,'createMollieSubscription'])->name('create.mollie.subscription');
 
 require __DIR__.'/auth.php';
