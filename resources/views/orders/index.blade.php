@@ -5,12 +5,13 @@
                 <p>HALLLLLLLLLLLLLLOOOOO</p>
 
                 @foreach($orders as $order)
-
+                    @foreach($products as $product)
                     <div class="flex">
                         <div class="text-2xl">
-                            <a href="/dashboard/products/{{$order->id}}" class="font-semibold text-xl text-gray-800 leading-tight">{{$order->product_id}}</a>
+                            <a href="/dashboard/products/{{$order->id}}" class="font-semibold text-xl text-gray-800 leading-tight">{{$product->name}}</a>
                         </div> 
                     </div>
+                    @endforeach
                 @endforeach
             </div>
         </div>

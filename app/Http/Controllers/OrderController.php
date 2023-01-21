@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +19,13 @@ class OrderController extends Controller
     {
         $orders = Order::latest()->simplePaginate(6);;
         $data['orders'] = $orders;
+        foreach($orders as $order){
+            $products = DB::table('products')->simplePaginate(6);
+            $product = $products->where('id','=', $order->product_id);
+            $data['products'] = $product;
+        }
+        //$product = Product::with('id')->where('id','=',$orders->product_id)->get();
+        //dd($product);
         return view('orders.index', $data);
 
     }
