@@ -21,7 +21,7 @@
             
             <div class="mb-3">
                 <h4 class="text-sm">Posted by:</h4>
-                <p class="text-sm text-red-600">{{$product->user->name}}</p>
+                <p class="text-sm text-red-600">{{$product->user}}</p>
             </div>
 
             @if($product->user_id == Auth::id())
@@ -33,24 +33,17 @@
                         @method('DELETE')
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete product</button>
                     </form>
-                </div>
-                <div class="mt-4 flex space-x-6">
-
-                    <form method="POST" action="/orders" enctype="multipart/form-data">
-                        @csrf
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
-                        <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">
-                    </form>
-                </div>
-    
+                </div>    
             @endif
 
-            @if(!Auth::check())
             <div class="mt-4 flex space-x-6">
 
-                    <a href="/login"><button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy product</button></a>
+                <form method="POST" action="/orders" enctype="multipart/form-data">
+                    @csrf
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
+                    <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">
+                </form>
             </div>
-        @endif
         </div>
 
 </x-app-layout>

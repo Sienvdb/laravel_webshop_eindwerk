@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Facades\Input;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,16 +19,22 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::latest()->simplePaginate(6);;
+        $orders = Order::latest()->simplePaginate(30);
         $data['orders'] = $orders;
+        $data['products'] = array();
+        $products = DB::table('products')->simplePaginate(30);
+
+        /*
         foreach($orders as $order){
-            $products = DB::table('products')->simplePaginate(6);
-            $product = $products->where('id','=', $order->product_id);
-            $data['products'] = $product;
+            $product = Order::product()->id;
         }
-        //$product = Product::with('id')->where('id','=',$orders->product_id)->get();
-        //dd($product);
+        */
+
+        $data['products'] = $products;
         return view('orders.index', $data);
+
+
+        //$product = Product::with('id')->where('id','=',$orders->product_id)->get();
 
     }
 
@@ -66,10 +74,9 @@ class OrderController extends Controller
         $order->user_id = Auth::user()->id;
         $order->product_id = $request->product_id;
         $order->description = "first test";
-        $order->amount = 3;
+        $order->amount = 7;
         //dd($order, $request, $request->product_id);
         $order->save();
-        dd($order);
 
         return redirect()->route('orders')->with('message', 'Product added to basket');
 
@@ -118,5 +125,9 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pay(){
+        return view('orders.pay');
     }
 }

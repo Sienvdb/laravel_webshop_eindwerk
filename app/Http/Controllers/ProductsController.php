@@ -17,7 +17,6 @@ class ProductsController extends Controller
     {
         $products = Product::latest()->filter(request(['search']))->simplePaginate(6);
         $data['products'] = $products;
-        dd($data);
         return view('dashboard', $data);
     }
 
