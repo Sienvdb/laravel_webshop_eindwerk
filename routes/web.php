@@ -31,6 +31,7 @@ Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])-
 Route::get('/orders',[OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders');
 Route::post('/ordedrs', [OrderController::class, 'create'])->name('index')->middleware(['auth']);;
 Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('orders');
+Route::get('/pay/{user}', [OrderController::class, 'pay'])->middleware(['auth'])->name('pay');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
