@@ -16,4 +16,9 @@ class Product extends Model
                 ->orWhere('description', 'like', '%'.$filters['search'].'%');
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

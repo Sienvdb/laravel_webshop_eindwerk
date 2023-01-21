@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
@@ -56,6 +57,7 @@ class ProductsController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->image = $request->file('image')->store('images', 'public');
+        $product->user_id = Auth::user()->id;
         $product->save();
         return redirect()->route('dashboard')->with('message', 'Product added successfully');
     }

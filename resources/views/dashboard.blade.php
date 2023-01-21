@@ -16,8 +16,7 @@
          
                         @foreach($products as $product)
                             <div class="flex">
-                                <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
-                                <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
+                                <a href="/products/{{$product->id}}"><img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image"></a>
                                 <div class="text-2xl">
                                     <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
                                 </div> 
