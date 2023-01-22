@@ -17,7 +17,7 @@ use App\Http\Controllers\MollieController;
 |
 */
 
-Route::get('/',[ProductsController::class, 'showProducts']);
+Route::get('/',[ProductsController::class, 'showProducts'])->name('');
 Route::get('/products/{product}',[ProductsController::class, 'showProduct']);
 
 Route::get('/dashboard',[ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,6 +30,8 @@ Route::delete('/dashboard/products/{product}',[ProductsController::class, 'destr
 Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])->middleware(['auth']);
 
 Route::get('/orders',[OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders');
+Route::get('/admin',[OrderController::class, 'showOrders'])->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin/{order}',[OrderController::class, 'adminUpdateOrder'])->middleware(['auth', 'verified'])->name('admin');
 Route::post('/ordedrs', [OrderController::class, 'create'])->name('index')->middleware(['auth']);;
 Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('orders');
 Route::delete('/orders/{order}',[OrderController::class, 'destroy'])->middleware(['auth']);
