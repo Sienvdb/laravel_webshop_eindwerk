@@ -9,9 +9,15 @@
                         <a href="{{ route('dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
                         </a>
-                        <a href="{{ route('orders') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
-                        </a>
+                        @if(Auth::user()->name == 'admin')
+                            <a href="{{ route('admin') }}">
+                                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                            </a>
+                        @else
+                            <a href="{{ route('orders') }}">
+                                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                            </a>
+                        @endif
                     @else
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     @endif
@@ -22,10 +28,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
-                        {{ __('Orders') }}
-                    </x-nav-link>
-
+                    @if(Auth::user()->name == 'admin')
+                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                            {{ __('Admin') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                            {{ __('My card') }}
+                        </x-nav-link>
+                    @endif
                 </div>
                 @endif
             </div>
