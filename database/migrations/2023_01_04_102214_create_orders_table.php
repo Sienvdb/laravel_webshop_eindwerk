@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('product_id');
             $table->longText('description');
             $table->integer('amount')->default(1);
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
