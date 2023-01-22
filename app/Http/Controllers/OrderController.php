@@ -25,6 +25,7 @@ class OrderController extends Controller
 
         $order = DB::table('orders')->get();
         $my_orders = $order->where('user_id', Auth::user()->id);
+        $my_orders = $my_orders->where('status', 'pending');
         $data['orders'] = $my_orders;
 
         $product = DB::table('products')->get();
@@ -39,6 +40,8 @@ class OrderController extends Controller
             $my_order_price = $my_order_amount * $my_product_price[0];
             
             array_push($data['my_price'], $my_order_price);
+
+            $data['total_cost'] = array_sum($data['my_price']);
     
         }
 
@@ -80,13 +83,14 @@ class OrderController extends Controller
         $request->validate([
             'product_id' => "required",
            // 'description' => 'required',
-            //'amount' =>  'required',
+            'amount' =>  'required',
         ]);
         $order = new Order();
         $order->user_id = Auth::user()->id;
         $order->product_id = $request->product_id;
-        $order->description = "first test";
-        $order->amount = 7;
+        $order->description = "";
+        $order->amount = $request->amount;
+        $order->status = "pending";
         //dd($order, $request, $request->product_id);
         $order->save();
 
