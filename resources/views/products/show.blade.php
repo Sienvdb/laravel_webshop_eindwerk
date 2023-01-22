@@ -40,6 +40,8 @@
 
                 <form method="POST" action="/orders" enctype="multipart/form-data">
                     @csrf
+                    <label for="amount" class="text-sm">Amount:</label>
+                    <input type="number" name="amount" id="amount" class="border border-gray-200 p-2 rounded" value="1" min="1" max="10">
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
                     <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">
                 </form>
