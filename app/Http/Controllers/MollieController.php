@@ -110,7 +110,7 @@ class MollieController extends Controller
 
         //delete $my_orders from database
         foreach($my_orders as $my_order){
-            DB::table('orders')->where('id', $my_order->id)->delete();
+            DB::table('orders')->where('id', $my_order->id)->update(['status' => 'paid']);
         }
 
         return view('mollie/mollie-success')->with('status','payment succesfully received');
