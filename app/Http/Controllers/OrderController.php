@@ -24,8 +24,8 @@ class OrderController extends Controller
         $products = DB::table('products')->simplePaginate(30);
 
         $order = DB::table('orders')->get();
-        $my_orders = $order->where('user_id', Auth::user()->id);
-        $my_orders = $my_orders->where('status', 'pending');
+        $my_order = $order->where('user_id', Auth::user()->id);
+        $my_orders = $my_order->where('status', 'pending');
         $data['orders'] = $my_orders;
 
         $product = DB::table('products')->get();
@@ -40,11 +40,14 @@ class OrderController extends Controller
             $my_order_price = $my_order_amount * $my_product_price[0];
             
             array_push($data['my_price'], $my_order_price);
-
-            $data['total_cost'] = array_sum($data['my_price']);
     
         }
-
+        if($my_order->pluck('status') == 'pending'){
+            $data['total_cost'] = array_sum($data['my_price']);
+        }
+        else{
+            $data['total_cost'] = 0;
+        }
         $data['products'] = $products;
         return view('orders.index', $data);
 
@@ -55,9 +58,20 @@ class OrderController extends Controller
 
     public function showOrders()
     {
-        $orders = Order::latest()->simplePaginate(6);
-        $data['orders'] = $orders;
-        return view('orders.index', $data);
+        $data['products'] = array();
+        $products = DB::table('products')->simplePaginate(30);
+        $data['products'] = $products;
+
+        $orders = DB::table('orders')->get();
+        $all_orders = $orders->where('status' , 'pending');
+        $data['orders'] = $all_orders;
+
+        $orders_user = $all_orders->pluck('user_id');
+
+        $users = DB::table('users')->get();
+        $this_user = $users->where('id', $orders_user);
+        $data['users'] = $this_user;
+        return view('orders.admin', $data);
     }
 
     /**
@@ -142,6 +156,13 @@ class OrderController extends Controller
     {
         $order->delete();
         return redirect()->route('orders')->with('message', 'Product deleted successfully');
+    }
+
+    public function adminUpdateOrder(Order $order) 
+    {
+        $order->status = "sended";
+        $order->save();
+        return redirect()->route('orders.admin')->with('message', 'Order updated successfully');
     }
 
 }
