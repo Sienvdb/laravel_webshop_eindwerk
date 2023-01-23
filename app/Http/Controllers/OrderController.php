@@ -58,19 +58,17 @@ class OrderController extends Controller
 
     public function showOrders()
     {
-        $data['products'] = array();
-        $products = DB::table('products')->simplePaginate(30);
-        $data['products'] = $products;
+        $orders = DB::table('orders')->where('status' , 'paid')->get();
+        $data['orders'] = $orders;
 
-        $orders = DB::table('orders')->get();
-        $all_orders = $orders->where('status' , 'paid');
-        $data['orders'] = $all_orders;
+        foreach($orders as $order){
+            $products = DB::table('products')->where('id',  $order->product_id)->get();
+            $data['products'] = $products;
+            
+            $users = DB::table('users')->where('id',  $order->user_id)->get();
+            $data['users'] = $users;
 
-        $orders_user = $all_orders->pluck('user_id');
-
-        $users = DB::table('users')->get();
-        $this_user = $users->where('id', $orders_user);
-        $data['users'] = $this_user;
+        }
         return view('orders.admin', $data);
     }
 
@@ -162,7 +160,7 @@ class OrderController extends Controller
     {
         $order->status = "sended";
         $order->save();
-        return redirect()->route('orders.admin')->with('message', 'Order updated successfully');
+        return redirect()->route('admin')->with('message', 'Order updated successfully');
     }
 
 }
