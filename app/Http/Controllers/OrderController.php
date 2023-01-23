@@ -42,7 +42,7 @@ class OrderController extends Controller
             array_push($data['my_price'], $my_order_price);
     
         }
-        if($my_order->pluck('status') == 'pending'){
+        if($my_orders){
             $data['total_cost'] = array_sum($data['my_price']);
         }
         else{
