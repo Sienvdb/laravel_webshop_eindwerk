@@ -25,11 +25,12 @@ class MollieController extends Controller
     {   
         $order = DB::table('orders')->get();
         $my_orders = $order->where('user_id', Auth::user()->id);
+        $this_orders = $my_orders->where('status', 'pending');
 
         $product = DB::table('products')->get();
 
         $my_price = 0;
-        foreach($my_orders as $my_order){
+        foreach($this_orders as $my_order){
             $my_order_product = $my_order->product_id;
 
             $my_product = $product->where('id', $my_order_product);
