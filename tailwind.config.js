@@ -8,12 +8,21 @@ module.exports = {
         './resources/views/**/*.blade.php',
     ],
 
+
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            // new hex color
+            colors: {
+                'primary': '#DC3545',
+                'red': '#FF6347',
+                'danger': '#DC3545',
+            },
+    
         },
+    
     },
 
     plugins: [require('@tailwindcss/forms')],

@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add Product</button>
+                    <button class="bg-rose-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add Product</button>
                     <a href="/dashboard" class="text-black ml-4"> Back to dashboard </a>
                 </div>
             </form>

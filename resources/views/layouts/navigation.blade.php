@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-rose-300 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -7,33 +7,33 @@
                 <div class="shrink-0 flex items-center">
                     @if(Auth::check())
                         <a href="{{ route('dashboard') }}">
-                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                            <x-application-logo class="block h-9 w-auto fill-current text-rose-700" /> 
                         </a>
                         @if(Auth::user()->name == 'admin')
                             <a href="{{ route('admin') }}">
-                                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                                <x-application-logo class="block h-9 w-auto fill-current text-rose-700" /> 
                             </a>
                         @else
                             <a href="{{ route('orders') }}">
-                                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
+                                <x-application-logo class="block h-9 w-auto fill-current text-rose-700" /> 
                             </a>
                         @endif
                     @else
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-rose-700" />
                     @endif
                 </div>
                 @if(Auth::check())
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-rose-700">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-rose-700">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if(Auth::user()->name == 'admin')
-                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
+                        <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')" class="text-rose-700">
                             {{ __('Admin') }}
                         </x-nav-link>
                     @else
-                        <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                        <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')" class="text-rose-700">
                             {{ __('My card') }}
                         </x-nav-link>
                     @endif
@@ -45,7 +45,7 @@
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
-                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-rose-300 hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">
