@@ -63,7 +63,7 @@ class OrderController extends Controller
         $data['products'] = $products;
 
         $orders = DB::table('orders')->get();
-        $all_orders = $orders->where('status' , 'pending');
+        $all_orders = $orders->where('status' , 'paid');
         $data['orders'] = $all_orders;
 
         $orders_user = $all_orders->pluck('user_id');
