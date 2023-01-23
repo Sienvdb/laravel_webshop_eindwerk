@@ -5,39 +5,42 @@
             @if($total_cost > 0)
                 <a class="btn btn-primary" href="{{route('mollie.create.payment')}}">Pay</a>
                 <p>Total cost = {{$total_cost}}</p>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20">
+                    <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+    
+                        @foreach($products as $product)
+                        @foreach($orders as $order)
+                            @if($order->product_id == $product->id)
+                            @php
+                                $price = $product->price * $order->amount;
+                            @endphp
+                            <div class="flex">
+                                <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
+                                <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
+                                <div class="text-2xl">
+                                    <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
+                                    <p>Amount: {{$order->amount}}</p>
+                                    <p>Price: {{$price}} </p>
+                                    <form method="POST" action="/orders/{{$order->id}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+                                    </form>
+                                </div> 
+                            </div>      
+                            @endif  
+                            @endforeach
+                        @endforeach
+                    </div>
+                </div>
+    
             @else
-                <p>There are no products in your card</p>
-                <a href="{{route('dashboard')}}"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Verder shoppen</button></a>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20 center">
+                        <p>There are no products in your card</p>
+                        <a href="{{route('dashboard')}}"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Go shopping</button></a>
+                </div>           
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20">
-                <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
-
-                    @foreach($products as $product)
-                    @foreach($orders as $order)
-                        @if($order->product_id == $product->id)
-                        @php
-                            $price = $product->price * $order->amount;
-                        @endphp
-                        <div class="flex">
-                            <!--<img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : asset($product->image)}}" alt="Product image">-->
-                            <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
-                            <div class="text-2xl">
-                                <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
-                                <p>Amount: {{$order->amount}}</p>
-                                <p>Price: {{$price}} </p>
-                                <form method="POST" action="/orders/{{$order->id}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
-                                </form>
-                            </div> 
-                        </div>      
-                        @endif  
-                        @endforeach
-                    @endforeach
-                </div>
-            </div>
         </div>
     </div>
     </x-app-layout>
