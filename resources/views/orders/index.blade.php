@@ -2,15 +2,17 @@
     <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <h1 class="font-serif text-rose-100 text-3xl ">My shoppingcard</h1>
+
             @if($total_cost > 0)
-            <div class="flex flex-row m-2 m-2 p-4">
-                <a href="{{route('dashboard')}}" class="btn bg-rose-700 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded btn-primary text-rose-300 border-2 border-rose-300"><button>Continue shopping</button></a>
-                <a class=" bg-rose-300 text-rose-700 font-bold py-2 px-20 m-4 rounded " href="{{route('mollie.create.payment')}}">Pay</a>
-                <p class="text-rose-300 py-2 px-4 m-4">Total cost = €{{$total_cost}}</p>
+            <div class="flex flex-row m-2 ml-0 p-4">
+                <a href="{{route('dashboard')}}" class="btn bg-rose-700 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded btn-primary text-rose-100 border-2 border-rose-100"><button>Continue shopping</button></a>
+                <a class=" bg-rose-200 text-rose-700 font-bold py-2 px-20 m-4 rounded " href="{{route('mollie.create.payment')}}">Pay</a>
+                <p class="text-rose-100 py-2 px-4 m-4">Total cost = €{{$total_cost}}</p>
     
             </div>
 
-                <div class="h-56 flex flex-row gap-4 content-center my-5">
+                <div class=" flex flex-row gap-4 content-center my-5">
                         <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4 ">
         
                             @foreach($products as $product)
@@ -24,7 +26,7 @@
                                 <div class="grid grid-cols-2 m-2 m-2">
                                     <a href="/products/{{$product->id}}"><img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image"></a>
                                     <div class="text-2xl text-rose-700">
-                                        <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
+                                        <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight font-serif">{{$product->name}}</a>
                                         <p class="text-base">Amount: {{$order->amount}}</p>
                                         <p class="text-base">Price: {{$price}} </p>
                                         <form method="POST" action="/orders/{{$order->id}}">
