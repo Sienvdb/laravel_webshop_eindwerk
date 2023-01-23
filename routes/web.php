@@ -31,7 +31,7 @@ Route::get('/dashboard/products/{product}',[ProductsController::class, 'show'])-
 
 Route::get('/orders',[OrderController::class, 'index'])->middleware(['auth', 'verified'])->name('orders');
 Route::get('/admin',[OrderController::class, 'showOrders'])->middleware(['auth', 'verified'])->name('admin');
-Route::get('/admin/{order}',[OrderController::class, 'adminUpdateOrder'])->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin/{order}',[OrderController::class, 'adminUpdateOrder'])->middleware(['auth', 'verified'])->name('adminUpdateOrder');
 Route::post('/ordedrs', [OrderController::class, 'create'])->name('index')->middleware(['auth']);;
 Route::post('/orders', [OrderController::class, 'store'])->middleware(['auth'])->name('orders');
 Route::delete('/orders/{order}',[OrderController::class, 'destroy'])->middleware(['auth']);
