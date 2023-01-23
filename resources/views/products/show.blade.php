@@ -4,19 +4,21 @@
     @endif
 
     @if(!Auth::check())
-        <a href="/" class="inline-block font-bold text-red-600 ml-4 mb-4 text-rose-300>&larr; Back</a>
+        <a href="/" class="inline-block font-bold text-red-600 ml-4 mb-4 text-rose-300">&larr; Back</a>
     @endif
     <div class="mx-4">
         <div class=" border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24 bg-rose-300  text-rose-700">
-            <h2 class="text-2xl font-bold uppercase mb-6 text-red-600 flex justify-center">
-                {{$product->name}} 
-            </h2>
+            <div class="grid grid-cols-5">
+                <h2 class="text-2xl font-bold col-start-1 col-end-3 font-serif mr-6 uppercase mb-6 text-red-600 flex justify-center">
+                    {{$product->name}} 
+                </h2>
+                <p class="text-rose-100 col-start-4 mb-4 bg-rose-700 rounded p-1">
+                    &euro;{{$product->price}}
+                </p>    
+            </div>
             <div class="mt-4 flex space-x-6 justify-center">
                 <img class="w-48  flex items-center justify-self-center" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image">
             </div>
-            <p class="text-rose-700 mb-4">
-                &euro;{{$product->price}}
-            </p>
             <p class="text-rose-700 mb-4">
                 {{$product->description}}
             </p>
@@ -28,7 +30,7 @@
                 </div>
             -->
 
-            @if($product->user_id == Auth::id())
+            @if(Auth::user()->name == 'admin')
                 <div class="mt-4 p-2 flex space-x-6">
                     <a href="/dashboard/products/{{$product->id}}/edit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit product</a>
 
