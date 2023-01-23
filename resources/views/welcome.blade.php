@@ -21,7 +21,7 @@
     </head>
     <body class="antialiased bg-rose-700">
         <x-app-layout>
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center min-h-screen bg-rose-700 dark:bg-rose-700 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
@@ -45,10 +45,9 @@
             <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <a href="/dashboard/products/create" class="bg-rose-300 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add product</a>
-                    <div class="grid grid-cols-2 mt-20 m-2">
     
     
-                        <div class="lg:grid lg:grid-cols-2 gap-6 space-y-6 md:space-y-0">
+                        <div class="lg:grid lg:grid-cols-2 gap-6 space-y-6 md:space-y-0 mt-20 m-2">
                             @foreach($products as $product)
                                 <div class="flex bg-rose-300 rounded p-5">
                                     <a href="/products/{{$product->id}}"><img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image"></a>
@@ -59,7 +58,6 @@
                                 </div>
                             @endforeach
                     </div>
-            </div>
                 </div>
             </div>
                 <div class="mt-6 p-4">
