@@ -2,8 +2,14 @@
     <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a class="btn btn-primary" href="{{route('mollie.create.payment')}}">Pay</a>
-            <p>Total cost = {{$total_cost}}</p>
+            @if($total_cost > 0)
+                <a class="btn btn-primary" href="{{route('mollie.create.payment')}}">Pay</a>
+                <p>Total cost = {{$total_cost}}</p>
+            @else
+                <p>There are no products in your card</p>
+                <a href="{{route('dashboard')}}"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Verder shoppen</button></a>
+            @endif
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20">
                 <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 
