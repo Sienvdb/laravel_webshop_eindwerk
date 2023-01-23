@@ -13,6 +13,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                serif: ['Merriweather', ...defaultTheme.fontFamily.serif],
             },
             // new hex color
             colors: {
