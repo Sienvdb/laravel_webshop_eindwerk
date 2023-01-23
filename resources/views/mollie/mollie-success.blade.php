@@ -1,12 +1,21 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-4">Choose One Plan To Subscribe</h1>
-</div>
-<div class="container">
-    @if (!empty($status) || Session::get('status'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>    
-            <strong>{{ $status ?? Session::get('status')}}</strong>
-        </div>
+<x-app-layout>
+    @if(Auth::check())
+        <a href="/dashboard" class="inline-block font-bold text-red-600 ml-4 mb-4">&larr; Back</a>
     @endif
 
-    <button>terug naar webshop</button>
+    @if(!Auth::check())
+        <a href="/" class="inline-block font-bold text-red-600 ml-4 mb-4">&larr; Back</a>
+    @endif
+    <div class="mx-4">
+        <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24">
+
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">{{ $status ?? Session::get('status')}}</h1>
+        </div>
+        <div class="container">
+        
+            <a href="{{route('dashboard')}}"><button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Terug naar webshop</button></a>
+            </div>
+    </div>
+
+</x-app-layout>
