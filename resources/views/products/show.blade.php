@@ -19,10 +19,12 @@
                 {{$product->description}}
             </p>
             
-            <div class="mb-3">
-                <h4 class="text-sm">Posted by:</h4>
-                <p class="text-sm text-red-600">{{$product->user}}</p>
-            </div>
+            <!--
+                <div class="mb-3">
+                    <h4 class="text-sm">Posted by:</h4>
+                    <p class="text-sm text-red-600">{{$product->user}}</p>
+                </div>
+            -->
 
             @if($product->user_id == Auth::id())
                 <div class="mt-4 p-2 flex space-x-6">
@@ -42,7 +44,7 @@
                     @csrf
                     <label for="amount" class="text-sm">Amount:</label>
                     <input type="number" name="amount" id="amount" class="border border-gray-200 p-2 rounded" value="1" min="1" max="10">
-                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Buy me</button>
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add to card</button>
                     <input type="hidden" class="product_id" name="product_id" value="{{$product->id}}">
                 </form>
             </div>
