@@ -4,7 +4,7 @@
             class="bg-rose-300 border border-gray-50 p-10 rounded max-w-lg mx-auto mt-24"
         >
             <header class="text-center">
-                <h2 class="text-2xl font-bold uppercase mb-1">
+                <h2 class="text-3xl font-serif font-bold uppercase mb-1">
                     Edit product
                 </h2>
                 <p class="mb-4">Edit: {{$product->name}}</p>
