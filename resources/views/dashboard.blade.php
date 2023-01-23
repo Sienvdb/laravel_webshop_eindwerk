@@ -12,8 +12,7 @@
                 <a href="/dashboard/products/create" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Add product</a>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-20">
                     <div class="lg:grid lg:grid-cols-2 gap-6 space-y-6 md:space-y-0 mx-4">
-                        <p>halllooooooooooooooo</p>
-         
+        
                         @foreach($products as $product)
                             <div class="flex">
                                 <a href="/products/{{$product->id}}"><img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image"></a>
