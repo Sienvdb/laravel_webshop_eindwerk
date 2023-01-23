@@ -22,7 +22,7 @@
                                 <div class="bg-rose-300 overflow-hidden shadow-sm sm:rounded-lg p-5 ">
 
                                 <div class="grid grid-cols-2 m-2 m-2">
-                                    <img class="w-48 mr-6 md:block" src="{{$product->image}}" alt="Product image">
+                                    <a href="/products/{{$product->id}}"><img class="w-48 mr-6 md:block" src="{{$product->image ? asset('storage/' . $product->image) : '/images/default.jpg'}}" alt="Product image"></a>
                                     <div class="text-2xl text-rose-700">
                                         <a href="/dashboard/products/{{$product->id}}" class="font-semibold text-xl text-red-600 leading-tight">{{$product->name}}</a>
                                         <p class="text-base">Amount: {{$order->amount}}</p>
