@@ -30,7 +30,8 @@
                 </div>
             -->
 
-            @if(Auth::user()->name == 'admin')
+            @if(Auth::user())
+                @if(Auth::user()->name == 'admin')
                 <div class="mt-4 p-2 flex space-x-6">
                     <a href="/dashboard/products/{{$product->id}}/edit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Edit product</a>
 
@@ -40,6 +41,7 @@
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete product</button>
                     </form>
                 </div>    
+                @endif
             @endif
 
             <div class="mt-4 flex space-x-6 justify-center">

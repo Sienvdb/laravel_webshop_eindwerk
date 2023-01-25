@@ -38,8 +38,10 @@
 
             <div class="pb-12 pt-6">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    @if(Auth::user()->name == 'admin')
-                        <a href="/dashboard/products/create" class="bg-rose-300 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded">Add product</a>
+                    @if(Auth::user())
+                        @if(Auth::user()->name == 'admin')
+                            <a href="/dashboard/products/create" class="bg-rose-300 hover:bg-red-700 text-white font-bold py-2 px-4 m-4 rounded">Add product</a>
+                        @endif
                     @else
                     <div class="text-rose-100 justify justify-center w-full">
                         <h1 class="font-serif text-3xl ">Welcome to this Valentine webshop!</h1>
