@@ -58,12 +58,20 @@ class OrderController extends Controller
 
     public function showOrders()
     {
+
         $orders = DB::table('orders')->where('status' , 'paid')->get();
-        $data['orders'] = $orders;
+        if($orders){
+            $data['orders'] = $orders;
+        }
+        else{
+            $data['orders'] = "No orders yet";
+        }
 
         foreach($orders as $order){
             $products = DB::table('products')->where('id',  $order->product_id)->get();
             $data['products'] = $products;
+            //array_push($data['products'], $products);
+
             
             $users = DB::table('users')->where('id',  $order->user_id)->get();
             $data['users'] = $users;

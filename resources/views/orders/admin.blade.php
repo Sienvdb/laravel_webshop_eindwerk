@@ -7,8 +7,9 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg mt-20">
                 <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
                  
-
+                    @if($orders == "No orders yet")
                     @foreach($products as $product)
+
 
                     @foreach($orders as $order)
 
@@ -34,6 +35,7 @@
                     @endforeach
                         @endforeach
                     @endforeach
+                    @endif
                 </div>
             </div>
         </div>
